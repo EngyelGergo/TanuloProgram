@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="TanuloProgram.MVVM.View.LanguageViews.LanguageWordUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:TanuloProgram.MVVM.View.LanguageViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="{StaticResource HomeBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="{Binding TitleLabel}" Style="{StaticResource TitleLabel}" FontSize="25"/>
+        <ComboBox ItemsSource="{Binding LanguageWords}" Grid.Row="1" Margin="50 0 50 0" HorizontalContentAlignment="Center" Style="{StaticResource CustomComboBoxStyle}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Foreground="{StaticResource PrimaryTextColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource BasicFamily}" FontWeight="Bold">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} | {1}">
+                                <Binding Path="NativeWord" />
+                                <Binding Path="ForeignWord" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.ItemContainerStyle>
+                <Style BasedOn="{StaticResource ComboBoxItemStyle}" TargetType="ComboBoxItem"/>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Magyar" Style="{StaticResource BasicLabel}"/>
+            <Label Grid.Column="1" Content="{Binding LanguageLabel}" Style="{StaticResource BasicLabel}"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding NativeWordTB}" Grid.Column="0" Margin="30 5 15 5" Style="{StaticResource BasicTextBox}" IsEnabled="{Binding NativeTBEnable}" />
+            <TextBox Text="{Binding ForeignWordTB}" Grid.Column="1" Margin="15 5 30 5" Style="{StaticResource BasicTextBox}" IsEnabled="{Binding ForeignTBEnable}"/>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0" IsChecked="{Binding IsWordChecked, Mode=TwoWay}" Content="Szó" Style="{StaticResource BasicChechBox}" IsEnabled="{Binding WordEnable}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding OnWordCheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding OnWordUncheckedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Grid.Column="1" IsChecked="{Binding IsSentenceChecked, Mode=TwoWay}" Content="Mondat" Style="{StaticResource BasicChechBox}" IsEnabled="{Binding SentenceEnable}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding OnSentenceCheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding OnSentenceUncheckedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+
+        <Label Grid.Row="5" Content="{Binding ReplyLabel}" Style="{StaticResource BasicLabel}" Foreground="{StaticResource HightlightColor}"/>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Command="{Binding EditElementCommand}" Content="Szerkesztés" Style="{StaticResource StartUpButtonStyle}" Margin="100 0 100 0" Width="auto" IsEnabled="{Binding ModifyEnable}"/>
+            <Button Grid.Column="0" Command="{Binding DeleteElementCommand}" Content="Törlés" Style="{StaticResource StartUpButtonStyle}" Margin="100 0 100 0" Width="auto" IsEnabled="{Binding DeleteEnable}" />
+        </Grid>
+
+        <Button Grid.Row="7" Command="{Binding BackToPreviousViewCommand}" Content="Vissza a menübe" Style="{StaticResource StartUpButtonStyle}" Margin="100 0 100 0" Width="auto"/>
+    </Grid>
+</UserControl>

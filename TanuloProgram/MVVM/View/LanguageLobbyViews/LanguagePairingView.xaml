@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="TanuloProgram.MVVM.View.LanguageLobbyViews.LanguagePairingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TanuloProgram.MVVM.View.LanguageLobbyViews" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             d:DesignHeight="1200" d:DesignWidth="1600">
+    <Grid Background="{StaticResource HomeBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Margin="40 40 40 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Elemek mennyisége:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Left"/>
+                <Slider Grid.Row="1" 
+                        Minimum="{Binding UpperSlider.MinimumValue}"
+                        Maximum="{Binding UpperSlider.MaximumValue}" 
+                        Value="{Binding UpperSlider.Value}" 
+                        IsEnabled="{Binding UpperSlider.Enable}"
+                        Style="{StaticResource AppSliderStyle}"/>
+            </Grid>
+            
+            <Label Grid.Column="1" Grid.Row="0" Content="{Binding UpperSlider.ValueLabel}" Style="{StaticResource BasicLabel}"/>
+
+            <CheckBox Grid.Column="2" Grid.Row="0" IsChecked="{Binding MaximumWords}" Content="Maximum" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding UpperSlider.CheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding UpperSlider.UncheckedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox HorizontalAlignment="Left"  Margin="30 0 0 0" Grid.Column="3" Grid.Row="0"  IsChecked="{Binding CheckBoxState.IsWordChecked}" Content="csak szó" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding CheckBoxState.DefaultItems}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox Grid.Column="4" Grid.Row="0" Margin="10 0 0 0" Content="Kiemelés" Style="{StaticResource BasicChechBox}" IsChecked="{Binding IsHighlighted}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding HighlightOnCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding HighlightOffCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+            
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Feladat mennyisége:" Style="{StaticResource BasicLabel}" HorizontalAlignment="Left"/>
+                <Slider Grid.Row="1"
+                        Minimum="{Binding LowerSlider.MinimumValue}"
+                        Maximum="{Binding LowerSlider.MaximumValue}"
+                        Value="{Binding LowerSlider.Value}"
+                        IsEnabled="{Binding LowerSlider.Enable}"
+                        Style="{StaticResource AppSliderStyle}"/>
+            </Grid>
+            <Label Grid.Column="0" Grid.Row="2" Content="{Binding ErrorLabel}" Style="{StaticResource BasicLabel}" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" FontStyle="Italic" Foreground="{StaticResource HightlightColor}"/>
+            <Label Grid.Column="1" Grid.Row="1"  Content="{Binding LowerSlider.ValueLabel}" Style="{StaticResource BasicLabel}"/>
+
+            <CheckBox Grid.Column="2" Grid.Row="1" IsChecked="{Binding MaximumTasks}" Content="Maximum" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding LowerSlider.CheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding LowerSlider.UncheckedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox HorizontalAlignment="Left" Margin="30 0 0 0" Grid.Column="3" IsChecked="{Binding CheckBoxState.IsSentenceChecked}" Grid.Row="1" Content="csak mondat" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding CheckBoxState.DefaultItems}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+            
+            <Label Grid.Column="5" Grid.Row="0" Content="Alapnyelv:" Style="{StaticResource BasicLabel}" VerticalAlignment="Bottom"/>
+
+            <ToggleButton Grid.Column="5" Grid.Row="1" 
+                          Content="{Binding TypeChangeLabel}" 
+                          VerticalAlignment="Top" 
+                          Height="40"
+                          Command="{Binding LeftButtonClickCommand }">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="border" Background="{StaticResource ButtonBackgroundColor}" CornerRadius="30" BorderThickness="2" BorderBrush="{StaticResource BorderColour}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontFamily" Value="Century"/>
+                                        <Setter Property="FontSize" Value="24"/>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonBackgroundColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonMouseOverColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseRightButtonDown">
+                        <i:InvokeCommandAction Command="{Binding RightButtonClickCommand }" />
+                    </i:EventTrigger>                            
+                </i:Interaction.Triggers>
+            </ToggleButton>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="{StaticResource BorderColour}" BorderThickness="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding PreviousCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="20" Width="auto" Height="auto">
+                    <Grid>
+                        <Path Data="M30,0 L0,30 L30,60 Z" Fill="{StaticResource PrimaryTextColor}" />
+                    </Grid>
+                </Button>
+
+                <ContentControl Grid.Column="1" Content="{Binding SelectedVM}" Visibility="{Binding SelectedVisibility}">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <!-- A PairingView UserControl, amely a PairingViewModelInstance-t használja DataContextként -->
+                            <local:PairingView DataContext="{Binding}" />
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+                <Button Grid.Column="2" Command="{Binding NextCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="20" Width="auto" Height="auto">
+                    <Grid >
+                        <Path Data="M0,0 L30,30 L0,60 Z" Fill="{StaticResource PrimaryTextColor}" />
+                    </Grid>
+                </Button>
+            </Grid>
+        </Border>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Vissza" Command="{Binding BackToPreviousViewCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="40"/>
+            <Button Grid.Column="1" Content="Eredmény" Command="{Binding ResultViewCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="40" Visibility="{Binding SelectedVisibility}"/>
+            <Button Grid.Column="2" Content="{Binding StartButtonLabel}" Command="{Binding StartPairingCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="40"/>
+        </Grid>
+        
+    </Grid>
+</UserControl>

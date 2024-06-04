@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="TanuloProgram.MVVM.View.LanguageViews.LanguageWordAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TanuloProgram.MVVM.View.LanguageViews"
+             xmlns:core="clr-namespace:TanuloProgram.Core"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="{StaticResource HomeBackgroundColor}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="{Binding TitleLabel}" Style="{StaticResource TitleLabel}" FontSize="25"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Magyar" Style="{StaticResource BasicLabel}"/>
+            <Label Grid.Column="1" Content="{Binding LanguageLabel}" Style="{StaticResource BasicLabel}"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding NativeWord}" Margin="20 10 20 10"  Grid.Column="0" Style="{StaticResource BasicTextBox}"
+                     core:FocusBehavior.IsFocused="{Binding IsTextBoxFocused, Mode=TwoWay}"/>
+            <TextBox Text="{Binding ForeignWord}" Margin="20 10 20 10" Grid.Column="1" Style="{StaticResource BasicTextBox}"/>
+        </Grid>
+
+        <Label Grid.Row="3" Content="Válassza ki, hogy a kivánt elem szó vagy mondatként legyen tárolva" Style="{StaticResource BasicLabel}"/>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="1" IsChecked="{Binding IsWordChecked, Mode=TwoWay}" Content="Szó" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding OnWordCheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding OnWordUncheckedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Grid.Column="3" IsChecked="{Binding IsSentenceChecked, Mode=TwoWay}" Content="Mondat" Style="{StaticResource BasicChechBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding OnSentenceCheckedCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding OnSentenceUncheckedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+        </Grid>
+
+        <Label Grid.Row="5" Content="{Binding ReplyLabel}" Style="{StaticResource BasicLabel}" Foreground="{StaticResource HightlightColor}"/>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" Content="Létrehoz" Command="{Binding CreateWordCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="10" Width="auto"/>
+            <Button Grid.Column="0" Content="Vissza a menübe"  Command="{Binding BackToPreviousViewCommand}" Style="{StaticResource StartUpButtonStyle}" Margin="10" Width="auto"/>
+        </Grid>
+    </Grid>
+</UserControl>

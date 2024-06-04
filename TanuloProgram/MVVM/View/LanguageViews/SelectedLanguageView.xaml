@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TanuloProgram.MVVM.View.LanguageViews.SelectedLanguageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TanuloProgram.MVVM.View.LanguageViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="{StaticResource HomeBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="{Binding TitleLabel}" Style="{StaticResource TitleLabel}" FontSize="30"/>
+        <StackPanel Grid.Row="1">
+            <Button Content="Gyakorlás" Command="{Binding LoadLanguageCommand}"  Style="{StaticResource StartUpButtonStyle}" Margin="25 15 25 25"/>
+            <Button Content="Új szó hozzáadása" Command="{Binding NT_LWAV_Command}"  Style="{StaticResource StartUpButtonStyle}" Margin="25"/>
+            <Button Content="Szerkesztés" Command="{Binding NT_LWUV_Command}" Style="{StaticResource StartUpButtonStyle}" Margin="25"/>
+            <Button Content="Vissza" Command="{Binding BackToPreviousViewCommand}" Style="{StaticResource StartUpButtonStyle}"  Margin="0 60 0 0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

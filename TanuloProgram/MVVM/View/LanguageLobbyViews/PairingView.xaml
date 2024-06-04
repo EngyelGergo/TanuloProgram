@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="TanuloProgram.MVVM.View.LanguageLobbyViews.PairingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:TanuloProgram.MVVM.View.LanguageLobbyViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="{Binding NativeTitleLabel}" Style="{StaticResource BasicLabel}"/>
+                <Label Grid.Column="1" Content="{Binding ActuallViewLabel}" Style="{StaticResource BasicLabel}"/>
+                <Label Grid.Column="2" Content="{Binding ForeignTitleLabel}" Style="{StaticResource BasicLabel}"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Column="0" Grid.Row="0" Visibility="{Binding FirstItemVisibility}"  BorderThickness="1" BorderBrush="{StaticResource BorderColour}" CornerRadius="30" Margin="10" Background="{StaticResource HomeBackgroundColor}"/>
+                <Border Grid.Column="0" Grid.Row="1" Visibility="{Binding SecondItemVisibility}" BorderThickness="1" BorderBrush="{StaticResource BorderColour}" CornerRadius="30" Margin="10" Background="{StaticResource HomeBackgroundColor}"/>
+                <Border Grid.Column="0" Grid.Row="2" Visibility="{Binding ThirdItemVisibility}"  BorderThickness="1" BorderBrush="{StaticResource BorderColour}" CornerRadius="30" Margin="10" Background="{StaticResource HomeBackgroundColor}"/>
+                <Border Grid.Column="0" Grid.Row="3" Visibility="{Binding FourthItemVisibility}" BorderThickness="1" BorderBrush="{StaticResource BorderColour}" CornerRadius="30" Margin="10" Background="{StaticResource HomeBackgroundColor}"/>
+                <Border Grid.Column="0" Grid.Row="4" Visibility="{Binding FifthItemVisibility}"  BorderThickness="1" BorderBrush="{StaticResource BorderColour}" CornerRadius="30" Margin="10" Background="{StaticResource HomeBackgroundColor}"/>
+                <Label Grid.Column="0" Grid.Row="0" Visibility="{Binding FirstItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="{Binding LabelNativeOne[0]}" Foreground="{Binding LabelColorOne}"/>
+                <Label Grid.Column="0" Grid.Row="1" Visibility="{Binding SecondItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="{Binding LabelNativeTwo[0]}" Foreground="{Binding LabelColorTwo}"/>
+                <Label Grid.Column="0" Grid.Row="2" Visibility="{Binding ThirdItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="{Binding LabelNativeThree[0]}" Foreground="{Binding LabelColorThree}"/>
+                <Label Grid.Column="0" Grid.Row="3" Visibility="{Binding FourthItemVisibility}" Style="{StaticResource BasicLabel}"  Content="{Binding LabelNativeFour[0]}" Foreground="{Binding LabelColorFour}"/>
+                <Label Grid.Column="0" Grid.Row="4" Visibility="{Binding FifthItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="{Binding LabelNativeFive[0]}" Foreground="{Binding LabelColorFive}"/>
+
+                <Label Grid.Column="1" Grid.Row="0" Visibility="{Binding FirstItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="=>"/>
+                <Label Grid.Column="1" Grid.Row="1" Visibility="{Binding SecondItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="=>"/>
+                <Label Grid.Column="1" Grid.Row="2" Visibility="{Binding ThirdItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="=>"/>
+                <Label Grid.Column="1" Grid.Row="3" Visibility="{Binding FourthItemVisibility}" Style="{StaticResource BasicLabel}"  Content="=>"/>
+                <Label Grid.Column="1" Grid.Row="4" Visibility="{Binding FifthItemVisibility}"  Style="{StaticResource BasicLabel}"  Content="=>"/>
+
+                <ToggleButton Grid.Column="2" Grid.Row="0" 
+                                Background="{Binding ButtonColorOne}"
+                                Visibility="{Binding FirstItemVisibility}" 
+                                Command="{Binding  BTOneCommand}" 
+                                Content="{Binding ItemsTButtonOne}" 
+                                Margin="10" Style="{StaticResource CustomToggleButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding OneRightButtonClickCommand }" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <ToggleButton Grid.Column="2" Grid.Row="1"
+                              Background="{Binding ButtonColorTwo}"
+                              Visibility="{Binding SecondItemVisibility}" 
+                              Command="{Binding  BTTwoCommand}" 
+                              Content="{Binding ItemsTButtonTwo}" 
+                              Margin="10" 
+                              Style="{StaticResource CustomToggleButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding TwoRightButtonClickCommand }" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <ToggleButton Grid.Column="2" Grid.Row="2" 
+                              Background="{Binding ButtonColorThree}"
+                              Visibility="{Binding ThirdItemVisibility}" 
+                              Command="{Binding  BTThreeCommand}" 
+                              Content="{Binding ItemsTButtonThree}" 
+                              Margin="10" 
+                              Style="{StaticResource CustomToggleButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding ThreeRightButtonClickCommand }" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <ToggleButton Grid.Column="2" Grid.Row="3" 
+                              Background="{Binding ButtonColorFour}"
+                              Visibility="{Binding FourthItemVisibility}"
+                              Command="{Binding  BTFourCommand}" 
+                              Content="{Binding ItemsTButtonFour}"
+                              Margin="10" 
+                              Style="{StaticResource CustomToggleButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding FourRightButtonClickCommand }" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+                <ToggleButton Grid.Column="2" Grid.Row="4" 
+                              Background="{Binding ButtonColorFive}"
+                              Visibility="{Binding FifthItemVisibility}" 
+                              Command="{Binding  BTFiveCommand}" 
+                              Content="{Binding ItemsTButtonFive}"
+                              Margin="10" 
+                              Style="{StaticResource CustomToggleButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding FiveRightButtonClickCommand }" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

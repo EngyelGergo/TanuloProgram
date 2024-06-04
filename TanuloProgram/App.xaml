@@ -1,0 +1,81 @@
+﻿<Application x:Class="TanuloProgram.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModel="clr-namespace:TanuloProgram.MVVM.ViewModel"
+             xmlns:languageViewModels="clr-namespace:TanuloProgram.MVVM.ViewModel.LanguageViewModels"
+             xmlns:languageLobbyViewModels="clr-namespace:TanuloProgram.MVVM.ViewModel.LanguageLobbyViewModels"
+             xmlns:languageLobbyViewModels_LanguagePairing="clr-namespace:TanuloProgram.MVVM.ViewModel.LanguageLobbyViewModels.LanguagePairing"
+             xmlns:view="clr-namespace:TanuloProgram.MVVM.View"
+             xmlns:languageView="clr-namespace:TanuloProgram.MVVM.View.LanguageViews"
+             xmlns:languageLobbyView="clr-namespace:TanuloProgram.MVVM.View.LanguageLobbyViews"
+             xmlns:local="clr-namespace:TanuloProgram">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- From LangugageViews: Language ViewModel connecting with Language View -->
+            <DataTemplate DataType="{x:Type TypeName=languageViewModels:LanguageViewModel}">
+                <languageView:LaguageView/>
+            </DataTemplate>
+            <!-- From LangugageViews: Language Create ViewModel connecting with Language Create View -->
+            <DataTemplate DataType="{x:Type TypeName=languageViewModels:LanguageCreateViewModel}">
+                <languageView:LaunguageCreateView/>
+            </DataTemplate>
+            <!-- From LangugageViews: Language Word Add ViewModel connecting with Language Word Add View -->
+            <DataTemplate DataType="{x:Type TypeName=languageViewModels:LanguageWordAddViewModel}">
+                <languageView:LanguageWordAddView/>
+            </DataTemplate>
+            <!-- From LangugageViews: Language Word Update ViewModel connecting with Language Word Update View -->
+            <DataTemplate DataType="{x:Type TypeName=languageViewModels:LanguageWordUpdateViewModel}">
+                <languageView:LanguageWordUpdateView/>
+            </DataTemplate>
+            <!-- From LangugageViews: Language Word Update ViewModel connecting with Language Word Update View -->
+            <DataTemplate DataType="{x:Type TypeName=languageViewModels:SelectedLanguageViewModel}">
+                <languageView:SelectedLanguageView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Language Lobby ViewModel connecting with Language Lobby View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:LanguageLobbyViewModel}">
+                <languageLobbyView:LanguageLobbyView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Language Pairing ViewModel connecting with Language Paring View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels_LanguagePairing:LanguagePairingViewModel}">
+                <languageLobbyView:LanguagePairingView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Pairing ViewModel connecting with Paring View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:PairingViewModel}">
+                <languageLobbyView:PairingView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Language Substitution ViewModel connecting with Language Substitution View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:LanguageSubstitutionViewModel}">
+                <languageLobbyView:LanguageSubstitutionView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Language Completion ViewModel connecting with Language Completion View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:LanguageCompletionViewModel}">
+                <languageLobbyView:LanguageCompletionView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Substitution ViewModel connecting with Substitution View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:SubstitutionViewModel}">
+                <languageLobbyView:SubstitutionView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Language Result ViewModel connecting with Result View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:LanguageResultViewModel}">
+                <languageLobbyView:LanguageResultView/>
+            </DataTemplate>
+            <!-- From LanguageLobbyViewModels: Completion ViewModel connecting with Completion View -->
+            <DataTemplate DataType="{x:Type TypeName=languageLobbyViewModels:CompletionViewModel}">
+                <languageLobbyView:CompletionView/>
+            </DataTemplate>
+            <!-- From ViewModel: Math ViewModel connecting with Math View -->
+            <DataTemplate DataType="{x:Type TypeName=viewModel:MathViewModel}">
+                <view:MathView/>
+            </DataTemplate>
+            <!-- From ViewModel: MainWindow ViewModel connecting with MainWindow View -->
+            <DataTemplate DataType="{x:Type TypeName=viewModel:MainViewModel}"/>
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
