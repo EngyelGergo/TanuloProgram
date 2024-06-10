@@ -32,6 +32,6 @@ namespace TanuloProgram.Services
 
     public interface IInsiderView
     {
-        public  string ActuallViewLabel { get; set; }
+        public  string? ActuallViewLabel { get; set; }
     }
 }

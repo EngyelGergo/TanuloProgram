@@ -25,7 +25,6 @@ namespace TanuloProgram.Services
             using (IDbConnection cnn = new SQLiteConnection(dbs + ";Version=3;"))
             {
                 cnn.Execute($"create table {tableName} (Id integer not null unique, NativeWord text not null, ForeignWord text not null, CONSTRAINT PK_{tableName} PRIMARY KEY(Id AUTOINCREMENT));");
-               // cnn.Execute("insert into Words (TableName,NativeWord,ForeignWord) values (@TableName,@NativeWord,@ForeignWord)", word);
             }
         }
 

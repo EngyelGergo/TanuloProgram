@@ -137,7 +137,11 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
             LanguageLabel = LanguageType;
             TitleLabel = $"Új szó létrehozása: {LanguageType} nyelven";
             Navigation = navService;
-            BackToPreviousViewCommand = new RelayCommand(o => { Navigation.NavigateTo<SelectedLanguageViewModel>(languageType); }, o => true);
+            BackToPreviousViewCommand = new RelayCommand(o => 
+            { 
+                Navigation.NavigateTo<SelectedLanguageViewModel>(languageType);
+                
+            }, o => true);
             OnWordCheckedCommand = new RelayCommand(o => { OnWordChecked(); }, o => true);
             OnSentenceCheckedCommand = new RelayCommand(o => { OnSentenceChecked(); }, o => true);
             OnWordUncheckedCommand = new RelayCommand(o => { OnWordUnchecked(); }, o => true);

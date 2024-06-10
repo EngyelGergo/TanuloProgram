@@ -42,10 +42,19 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
         {
             TitleLabel = tableName + _PRE;
             Navigation = navigation;
-            BackToPreviousViewCommand = new RelayCommand(o => { Navigation.NavigateTo<LanguageViewModel>(); }, o => true);
+            BackToPreviousViewCommand = new RelayCommand(o => 
+            { 
+                Navigation.NavigateTo<LanguageViewModel>();
+                LanguageEvent.RefresfhMainWindowEvent += OnRefreshEvent;
+            }, o => true);
             NT_LWAV_Command = new RelayCommand(o =>{ Navigation.NavigateTo<LanguageWordAddViewModel>(tableName); }, o => true);
             NT_LWUV_Command = new RelayCommand(o => { Navigation.NavigateTo<LanguageWordUpdateViewModel>(tableName); }, o => true);
             LoadLanguageCommand = new RelayCommand(o => { Navigation.NavigateTo<LanguageLobbyViewModel>(tableName); }, o => true);
+        }
+
+        private void OnRefreshEvent(object sender, RefreshEventArgs e)
+        {
+            CustomMethods.ResizeApplicationMainWindow(e.Height, e.Width);
         }
     }
 }

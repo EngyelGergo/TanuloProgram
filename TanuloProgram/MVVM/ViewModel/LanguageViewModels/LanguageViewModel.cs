@@ -9,6 +9,7 @@ using System.Windows;
 using TanuloProgram.Core;
 using TanuloProgram.MVVM.ViewModel.LanguageLobbyViewModels;
 using TanuloProgram.Services;
+using static TanuloProgram.Services.LanguageEvent;
 
 namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
 {
@@ -59,7 +60,8 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
 
         public LanguageViewModel(INavigationService navigation)
         {
-            CustomMethods.ResizeApplicationMainWindow(600, 900);
+            RefresfhMainWindowEvent += OnRefreshEvent;
+            ElementAddedEvent += OnElementAdded;
             LanguageList = new SQLiteConnectionSimple().LoadTables().Count > 0 ? new SQLiteConnectionSimple().LoadTables() : new();
             RemoveSQLiteTable(LanguageList);
             RemoveUnderlineFromTables();
@@ -67,7 +69,7 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
             BackToPreviousViewCommand = new RelayCommand(o => { Navigation.NavigateTo<MainViewModel>(); }, o => true);
             NT_LCV_Command = new RelayCommand(o => 
             {
-                CustomMethods.ResizeApplicationMainWindow(300, 450);
+                TriggerRefreshEvent(this, 300, 450);
                 Navigation.NavigateTo<LanguageCreateViewModel>(); 
             }, o => true);
 
@@ -91,11 +93,24 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
                     LogFile.LogLanguageSet(SelectedItem);
                     LogFile.LogData(LogDataType.MostChoosenLanguageAmount, SelectedItem);
                     LogFile.LogData(LogDataType.MostChoosenLanguage, SelectedItem);
+                    RefresfhMainWindowEvent -= OnRefreshEvent;
                     Navigation.NavigateTo<SelectedLanguageViewModel>(SelectedItem);
                 }
             }, o => true);
         }
 
+        private void OnRefreshEvent(object sender, RefreshEventArgs e)
+        {
+            CustomMethods.ResizeApplicationMainWindow(e.Height, e.Width);
+        }
+        private void OnElementAdded(object sender, StringElementEventArg e)
+        {
+            LanguageList.Add(e.Element);
+        }
+        private void OnElementDeleted(object sender, StringElementEventArg e)
+        {
+            LanguageList.Remove(e.Element);
+        }
         private void RemoveUnderlineFromTables()
         {
             int c = LanguageList.Count;

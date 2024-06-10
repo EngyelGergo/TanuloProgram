@@ -72,7 +72,8 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
         {
             Navigation = navigation;
             NavigateToLanguageViewCommand = new RelayCommand(o => 
-            { 
+            {
+                LanguageEvent.TriggerRefreshEvent(this, 600, 900);
                 Navigation.NavigateTo<LanguageViewModel>();
                 TextBoxText = "";
             }, o => true);
@@ -82,10 +83,12 @@ namespace TanuloProgram.MVVM.ViewModel.LanguageViewModels
                 {
                     new SQLiteConnectionSimple().CreateTable(TextBoxText.Trim().Replace(" ","_"));
                     CustomMethods.ResizeApplicationMainWindow(600, 900);
-                    Navigation.NavigateTo<LanguageViewModel>();
+                    LanguageEvent.TriggerCollenctionAddEvent(this, TextBoxText);
                     TextBoxText = "";
                     ErrorMessageLabel = "";
-                    LogFile.LogData(LogDataType.NewAdatbase);
+                    LogFile.LogData(LogDataType.NewAdatbase);                  
+                    Navigation.NavigateTo<LanguageViewModel>();
+                    
                 }
             }, o => true);
         }
